@@ -7,6 +7,7 @@ const emptyObject = {};
 
 export default class FaramGroupApi extends FormElementApi {
     onChangeMemory = {};
+
     onClickMemory = {}
 
     constructor() {

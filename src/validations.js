@@ -4,7 +4,8 @@ import {
     isInteger,
     splitInWhitespace,
     getErrorForDateValues,
-    urlRegex,
+    isValidEmail,
+    isValidUrl,
 } from '@togglecorp/fujs';
 
 
@@ -123,8 +124,7 @@ export const integerCondition = (value) => {
 };
 
 export const emailCondition = (value) => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const ok = isFalsy(value, ['']) || re.test(value);
+    const ok = isFalsy(value, ['']) || isValidEmail(value);
     return {
         ok,
         message: 'Value must be a valid email',
@@ -132,8 +132,7 @@ export const emailCondition = (value) => {
 };
 
 export const urlCondition = (value) => {
-    const re = urlRegex;
-    const ok = isFalsy(value, ['']) || re.test(value);
+    const ok = isFalsy(value, ['']) || isValidUrl(value);
     return {
         ok,
         message: 'Value must be a valid URL',
