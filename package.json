@@ -1,0 +1,60 @@
+{
+    "name": "@togglecorp/faram",
+    "version": "1.0.0",
+    "description": "Form library for react app",
+    "files": "build",
+    "main": "build/index.js",
+    "module": "build/index.es.js",
+    "scripts": {
+        "prepare": "rollup -c",
+        "build": "rollup -c",
+        "watch": "rollup -cw",
+        "test": "jest",
+        "test:coverage": "jest --coverage"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/toggle-corp/faram.git"
+    },
+    "author": "tnagorra",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/toggle-corp/faram/issues"
+    },
+    "homepage": "https://github.com/toggle-corp/faram#readme",
+    "devDependencies": {
+        "@babel/core": "^7.1.0",
+        "@babel/plugin-proposal-class-properties": "^7.1.0",
+        "@babel/plugin-proposal-export-default-from": "^7.2.0",
+        "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+        "@babel/plugin-transform-runtime": "^7.2.0",
+        "@babel/preset-env": "^7.1.0",
+        "@babel/preset-react": "^7.0.0",
+        "@babel/runtime": "^7.3.1",
+        "babel-eslint": "^10.0.1",
+        "babel-jest": "^24.1.0",
+        "babel-loader": "^8.0.2",
+        "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+        "eslint": "^5.6.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-jsx-a11y": "^6.1.1",
+        "eslint-plugin-react": "^7.11.1",
+        "jest": "^24.1.0",
+        "rollup": "^1.1.2",
+        "rollup-plugin-babel": "^4.3.2",
+        "rollup-plugin-local-resolve": "^1.0.7",
+        "rollup-plugin-node-resolve": "^4.0.0"
+    },
+    "dependencies": {
+        "@togglecorp/fujs": "^1.1.0",
+        "hoist-non-react-statics": "^3.0.1",
+        "immer": "^2.0.0",
+        "memoize-one": "^5.0.0",
+        "prop-types": "^15.6.2"
+    },
+    "peerDependencies": {
+        "react": "^16.5.2",
+        "react-dom": "^16.5.2"
+    }
+}
