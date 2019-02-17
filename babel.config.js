@@ -14,7 +14,17 @@ module.exports = function config(api) {
         ],
         env: {
             test: {
-                plugins: ['transform-es2015-modules-commonjs'],
+                presets: [
+                    ['@babel/preset-env'],
+                    '@babel/preset-react',
+                ],
+                plugins: [
+                    ['@babel/plugin-transform-runtime', { regenerator: true }],
+                    ['@babel/plugin-proposal-class-properties', { loose: true }],
+                    '@babel/plugin-proposal-object-rest-spread',
+                    '@babel/plugin-proposal-export-default-from',
+                    'transform-es2015-modules-commonjs',
+                ],
             },
         },
     };
