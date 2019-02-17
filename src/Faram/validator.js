@@ -46,7 +46,8 @@ export const accumulateValues = (obj, schema = {}, settings = {}) => {
             return falsyValue;
         }
         return obj;
-    } else if (isSchemaForArray) {
+    }
+    if (isSchemaForArray) {
         const safeObj = obj || emptyArray;
         const values = [];
         safeObj.forEach((element) => {
@@ -60,7 +61,8 @@ export const accumulateValues = (obj, schema = {}, settings = {}) => {
             return noFalsyValues ? emptyArray : falsyValue;
         }
         return values;
-    } else if (isSchemaForObject) {
+    }
+    if (isSchemaForObject) {
         const safeObj = obj || emptyObject;
         const values = {};
 
@@ -86,7 +88,13 @@ export const accumulateValues = (obj, schema = {}, settings = {}) => {
 };
 
 export const accumulateErrors = (obj, schema = {}) => {
-    const { member, fields, validation, keySelector, identifier } = schema;
+    const {
+        member,
+        fields,
+        validation,
+        keySelector,
+        identifier,
+    } = schema;
     const isSchemaForLeaf = isList(schema);
     const isSchemaForArray = (!!member && !!keySelector);
     const hasIdentifierFunction = !!identifier;
@@ -124,7 +132,8 @@ export const accumulateErrors = (obj, schema = {}) => {
             }
         });
         return hasNoKeys(errors) ? undefined : errors;
-    } else if (isSchemaForObject) {
+    }
+    if (isSchemaForObject) {
         const safeObj = obj || emptyObject;
         const localFields = hasIdentifierFunction
             ? getIdentifierChoice(safeObj, identifier, fields)
@@ -149,7 +158,13 @@ export const accumulateDifferentialErrors = (
         return oldError;
     }
     // NOTE: if schema is array, the object is the node element
-    const { member, fields, validation, keySelector, identifier } = schema;
+    const {
+        member,
+        fields,
+        validation,
+        keySelector,
+        identifier,
+    } = schema;
     const isSchemaForLeaf = isList(schema);
     const isSchemaForArray = !!member && !!keySelector;
     const hasIdentifierFunction = !!identifier;
@@ -213,8 +228,8 @@ export const accumulateDifferentialErrors = (
 
             // NOTE: clear out errors if different localMember for e.old and e.new
             const forgetOldError = (
-                hasIdentifierFunction &&
-                getIdentifierName(e.new, identifier) !== getIdentifierName(e.old, identifier)
+                hasIdentifierFunction
+                && getIdentifierName(e.new, identifier) !== getIdentifierName(e.old, identifier)
             );
 
             const fieldError = accumulateDifferentialErrors(
@@ -229,14 +244,18 @@ export const accumulateDifferentialErrors = (
         });
 
         return hasNoKeys(errors) ? undefined : errors;
-    } else if (isSchemaForObject) {
+    }
+    if (isSchemaForObject) {
         const safeOldObj = oldObj || emptyObject;
         const safeNewObj = newObj || emptyObject;
 
         // NOTE: clear out errors if different localMember for e.old and e.new
         const forgetOldError = (
-            hasIdentifierFunction &&
-            getIdentifierName(safeNewObj, identifier) !== getIdentifierName(safeOldObj, identifier)
+            hasIdentifierFunction
+            && (
+                getIdentifierName(safeNewObj, identifier)
+                !== getIdentifierName(safeOldObj, identifier)
+            )
         );
 
         // FIXME: forgetOldError can be made a lot better if it only clears
@@ -289,4 +308,3 @@ export const analyzeErrors = (errors) => {
         return isTruthy(subErrors);
     });
 };
-

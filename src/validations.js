@@ -98,8 +98,8 @@ export const lengthEqualToCondition = n => (value) => {
 
 export const requiredCondition = (value) => {
     const ok = isDefined(value) && !(
-        (typeof value === 'string' && splitInWhitespace(value).length <= 0) ||
-        (Array.isArray(value) && value.length <= 0)
+        (typeof value === 'string' && splitInWhitespace(value).length <= 0)
+        || (Array.isArray(value) && value.length <= 0)
     );
     return {
         ok,
