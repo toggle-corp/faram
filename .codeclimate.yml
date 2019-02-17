@@ -42,8 +42,9 @@ plugins:
     checks:
       complexity:
         enabled: false
-      config:
-        config: .eslintrc
+    config:
+      config: .eslintrc
+plugins:
   fixme:
     enabled: true
     config:
@@ -55,8 +56,13 @@ plugins:
 exclude_patterns:
 - "build/"
 - "coverage/"
+- "config/"
+- "scripts/"
+
 - "node_modules/"
+- "script/"
 - "**/spec/"
 - "**/test/"
 - "**/tests/"
+- "**/vendor/"
 - "**/*.test.js"
