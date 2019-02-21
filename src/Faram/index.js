@@ -67,7 +67,12 @@ const emptyObject = {};
 
 // TODO: memoizing accumulateErrors, analyzeErrors, accumulateValues
 // should be done later
-const handleSubmit = (value, schema, onValidationFailure, onValidationSuccess) => {
+const handleSubmit = ({
+    value,
+    schema,
+    onValidationFailure,
+    onValidationSuccess,
+}) => {
     const errors = accumulateErrors(value, schema);
     const hasErrors = analyzeErrors(errors);
 
@@ -93,6 +98,10 @@ const handleSubmit = (value, schema, onValidationFailure, onValidationSuccess) =
     onValidationSuccess(valuesWithNull, values);
     return values;
 };
+
+// NOTE: detachedFaram only calls handle submit and doesn't trigger
+// saving of new values or errors
+export const detachedFaram = handleSubmit;
 
 const memoizedComputeOutputs = memoize(computeOutputs);
 const handleChange = ({
@@ -132,6 +141,7 @@ const handleChange = ({
  */
 export default class Faram extends React.PureComponent {
     static propTypes = propTypes;
+
     static defaultProps = defaultProps;
 
     componentWillMount() {
@@ -214,12 +224,12 @@ export default class Faram extends React.PureComponent {
                     onValidationFailure,
                     onValidationSuccess,
                 } = this.props;
-                handleSubmit(
+                handleSubmit({
                     value,
                     schema,
                     onValidationFailure,
                     onValidationSuccess,
-                );
+                });
             },
             changeDelay,
         );
@@ -297,14 +307,3 @@ export default class Faram extends React.PureComponent {
         );
     }
 }
-
-// NOTE: detachedFaram only calls handle submit and doesn't trigger
-// saving of new values or errors
-export const detachedFaram = ({
-    value,
-    schema,
-    onValidationFailure,
-    onValidationSuccess,
-}) => {
-    handleSubmit(value, schema, onValidationFailure, onValidationSuccess);
-};

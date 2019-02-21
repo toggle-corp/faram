@@ -35,9 +35,14 @@ export const accumulateValues = (obj, schema = {}, settings = {}) => {
     } = settings;
 
     // NOTE: if schema is array, the object is the node element
-    const { member, fields, identifier } = schema;
+    const {
+        member,
+        fields,
+        identifier,
+        keySelector,
+    } = schema;
     const isSchemaForLeaf = isList(schema);
-    const isSchemaForArray = !!member;
+    const isSchemaForArray = (!!member && !!keySelector);
     const isSchemaForObject = !!fields;
     const hasIdentifierFunction = !!identifier;
 
@@ -264,7 +269,6 @@ export const accumulateDifferentialErrors = (
         const localFields = hasIdentifierFunction
             ? getIdentifierChoice(safeNewObj, identifier, fields)
             : fields;
-
 
         Object.keys(localFields).forEach((fieldName) => {
             if (safeOldObj[fieldName] === safeNewObj[fieldName] && safeOldError[fieldName]) {

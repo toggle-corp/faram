@@ -1,5 +1,5 @@
 export default from './Faram';
-
+export * from './Faram';
 export * from './Faram/validator';
 export * from './validations';
 export * from './FaramElements';
