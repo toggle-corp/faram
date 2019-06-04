@@ -140,6 +140,18 @@ export const urlCondition = (value) => {
     };
 };
 
+export const lenientUrlCondition = (value) => {
+    const ok = isFalsy(value, ['']) || isValidUrl(
+        (value.startsWith('http://') || value.startsWith('https://'))
+            ? value
+            : `http://${value}`,
+    );
+    return {
+        ok,
+        message: 'Value must be a valid URL',
+    };
+};
+
 export const dateCondition = (value) => {
     let error;
 

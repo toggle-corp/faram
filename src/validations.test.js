@@ -11,6 +11,7 @@ import {
     lengthEqualToCondition,
     emailCondition,
     urlCondition,
+    lenientUrlCondition,
     exclusiveInBetweenCondition,
     inclusiveInBetweenCondition,
 } from './validations';
@@ -129,4 +130,15 @@ test('url condition', () => {
     expect(urlCondition('').ok).toBe(true);
     expect(urlCondition('').ok).toBe(true);
     expect(urlCondition('https://www.w3.org/Protocols/HTTP/1.1/rfc2616.pdf').ok).toBe(true);
+    expect(urlCondition('http://www.w3.org/Protocols/HTTP/1.1/rfc2616.pdf').ok).toBe(true);
+    expect(urlCondition('www.w3.org/Protocols/HTTP/1.1/rfc2616.pdf').ok).toBe(false);
+});
+
+
+test('lenient url condition', () => {
+    expect(lenientUrlCondition('').ok).toBe(true);
+    expect(lenientUrlCondition('').ok).toBe(true);
+    expect(lenientUrlCondition('https://www.w3.org/Protocols/HTTP/1.1/rfc2616.pdf').ok).toBe(true);
+    expect(lenientUrlCondition('http://www.w3.org/Protocols/HTTP/1.1/rfc2616.pdf').ok).toBe(true);
+    expect(lenientUrlCondition('www.w3.org/Protocols/HTTP/1.1/rfc2616.pdf').ok).toBe(true);
 });
