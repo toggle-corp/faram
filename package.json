@@ -1,6 +1,6 @@
 {
     "name": "@togglecorp/faram",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Form library for react app",
     "files": "build",
     "main": "build/index.js",
