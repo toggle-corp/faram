@@ -1,6 +1,3 @@
-/**
- * @author tnagorra <weathermist@gmail.com>
- */
 import PropTypes from 'prop-types';
 import React from 'react';
 import memoize from 'memoize-one';
@@ -114,6 +111,7 @@ const handleChange = ({
     oldError,
     force,
 }) => {
+    // FIXME: move this memoized inside Faram
     const newValue = memoizedComputeOutputs(value, computeSchema);
 
     if (!force && value === newValue) {
@@ -144,12 +142,16 @@ export default class Faram extends React.PureComponent {
 
     static defaultProps = defaultProps;
 
-    componentWillMount() {
+    constructor(props) {
+        super(props);
+
         const { setSubmitFunction } = this.props;
         if (setSubmitFunction) {
             setSubmitFunction(this.submit);
         }
+    }
 
+    componentDidMount() {
         const {
             onChange,
             computeSchema,

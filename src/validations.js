@@ -17,7 +17,7 @@ export const exclusiveInBetweenCondition = (min, max) => (value) => {
         || (isFalsy(max) && value > min)
         || (value < max && value > min);
 
-    const message = ((isFalsy(min) && isFalsy(max)) && '')
+    const message = ((isFalsy(min) && isFalsy(max)) && ' ')
         || (isFalsy(min) && `Value must be less than ${max}`)
         || (isFalsy(max) && `Value must be greater than ${min}`)
         || `Value must be exclusively in between ${min} and ${max}`;
@@ -32,7 +32,7 @@ export const inclusiveInBetweenCondition = (min, max) => (value) => {
         || (isFalsy(max) && value >= min)
         || (value <= max && value >= min);
 
-    const message = ((isFalsy(min) && isFalsy(max)) && '')
+    const message = ((isFalsy(min) && isFalsy(max)) && ' ')
         || (isFalsy(min) && `Value must be less than or equal to ${max}`)
         || (isFalsy(max) && `Value must be greater than or equal to ${min}`)
         || `Value must be in between ${min} and ${max}`;
