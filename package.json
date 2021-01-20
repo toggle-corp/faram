@@ -49,7 +49,7 @@
         "@babel/runtime": "^7.5.5",
         "@togglecorp/fujs": "^1.8.0",
         "hoist-non-react-statics": "^3.3.0",
-        "immer": "^2.1.5",
+        "immer": "^8.0.1",
         "memoize-one": "^5.0.5",
         "prop-types": "^15.7.2"
     },
